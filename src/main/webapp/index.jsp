@@ -12,5 +12,15 @@
         <c:forEach items="${applicationScope.accounts}" var="account">
             ${account.value.name} : ${account.value.saldo} kr. <br />
         </c:forEach>
+
+        <h1>${requestScope.msg}</h1>
+
+        <form action="LoginServlet">
+            <label for="name">Indtast navn: </label>
+            <input type="text" id="name" name="name" placeholder="John" /><br />
+            <label for="pass">Indtast password: </label>
+            <input type="password" id="pass" name="pass" placeholder="******" /><br />
+            <input type="submit" value="Login" />
+        </form>
     </body>
 </html>
