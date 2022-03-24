@@ -17,13 +17,19 @@ public class LoginServlet extends HttpServlet {
 
         Account account = accountMap.getOrDefault(name, null);
 
-        if (account == null) {
+        if (account == null) { // Konto eksisterer ikke
             request.setAttribute("msg", "Kontoen kunne ikke findes.");
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else if (!account.getPass().equals(pass)) {
+        } else if (!account.getPass().equals(pass)) { // Koden er forkert
             request.setAttribute("msg", "Den angivne kode passer ikke.");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+
+        // Login success
+        HttpSession session = request.getSession();
+        session.setAttribute("konto", account);
+        request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
+
     }
 
     @Override
