@@ -40,9 +40,18 @@ public class LoginServlet extends HttpServlet {
 
         Map<String, Account> accountMap = (Map<String, Account>) getServletContext().getAttribute("accounts");
 
-        if (accountMap.containsKey(newname)) {
+        if (accountMap.containsKey(newname)) { // name already in use
             request.setAttribute("msg", "Navnet \"" + newname + "\" er allerede i brug, vælg et andet");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+
+        if (!pass.equals(passconf)) { // passwords don't match
+            request.setAttribute("msg", "Passwords skal være det samme i begge bokse");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+
+        Account account = new Account(newname, pass, 0);
+        accountMap.put(newname, account);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }
