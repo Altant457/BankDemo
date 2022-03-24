@@ -17,8 +17,8 @@ public class TransaktionServlet extends HttpServlet {
         Account account = (Account) request.getSession().getAttribute("konto");
 
         if (account == null) {
-            request.setAttribute("errmsg", "Gå til index for at logge ind igen");
-            request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
+            request.setAttribute("msg", "Gå til index for at logge ind igen");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
         int i = 0;
@@ -46,8 +46,8 @@ public class TransaktionServlet extends HttpServlet {
         Account account = (Account) request.getSession().getAttribute("konto");
 
         if (account == null) {
-            request.setAttribute("errmsg", "Gå til index for at logge ind igen");
-            request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
+            request.setAttribute("msg", "Du er logget ud, log venligst ind igen");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
         int i = 0;
