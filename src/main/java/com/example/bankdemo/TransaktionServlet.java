@@ -16,6 +16,11 @@ public class TransaktionServlet extends HttpServlet {
 
         Account account = (Account) request.getSession().getAttribute("konto");
 
+        if (account == null) {
+            request.setAttribute("errmsg", "Gå til index for at logge ind igen");
+            request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
+        }
+
         int i = 0;
         if (!beloeb.equals("")) { // hvis input IKKE er tomt
             i = Integer.parseInt(beloeb);
@@ -26,10 +31,10 @@ public class TransaktionServlet extends HttpServlet {
         } else if (i < 0) {
             errmsg = "Du kan ikke hæve et negativt beløb";
         }
-        request.setAttribute("errmsg", errmsg);
         account.withdraw(i);
 
 
+        request.setAttribute("errmsg", errmsg);
         request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
     }
 
@@ -40,6 +45,11 @@ public class TransaktionServlet extends HttpServlet {
 
         Account account = (Account) request.getSession().getAttribute("konto");
 
+        if (account == null) {
+            request.setAttribute("errmsg", "Gå til index for at logge ind igen");
+            request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
+        }
+
         int i = 0;
         if (!beloeb.equals("")) { // hvis input IKKE er tomt
             i = Integer.parseInt(beloeb);
@@ -49,8 +59,8 @@ public class TransaktionServlet extends HttpServlet {
             errmsg = "Du kan ikke indsætte et negativt beløb";
         }
 
-        request.setAttribute("errmsg", errmsg);
         account.insert(i);
+        request.setAttribute("errmsg", errmsg);
 
         request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
     }
