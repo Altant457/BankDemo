@@ -11,7 +11,7 @@ import java.io.IOException;
 public class TransaktionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String beloeb = request.getParameter("beloeb");
+        String beloeb = request.getParameter("haevebeloeb");
         String errmsg ="";
 
         Account account = (Account) request.getSession().getAttribute("konto");
@@ -35,6 +35,23 @@ public class TransaktionServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String beloeb = request.getParameter("indsaetbeloeb");
+        String errmsg ="";
 
+        Account account = (Account) request.getSession().getAttribute("konto");
+
+        int i = 0;
+        if (!beloeb.equals("")) { // hvis input IKKE er tomt
+            i = Integer.parseInt(beloeb);
+        }
+
+        if (i < 0) {
+            errmsg = "Du kan ikke indsætte et negativt beløb";
+        }
+
+        request.setAttribute("errmsg", errmsg);
+        account.insert(i);
+
+        request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
     }
 }

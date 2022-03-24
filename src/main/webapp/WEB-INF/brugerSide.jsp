@@ -11,9 +11,16 @@
 
     <h3>Hæv penge</h3>
     <form action="TransaktionServlet">
-      <label for="beloeb">Angiv beløb: </label>
-      <input type="number" id="beloeb" name="beloeb" placeholder="0" /><br />
+      <label for="haevebeloeb">Angiv beløb: </label>
+      <input type="number" id="haevebeloeb" name="haevebeloeb" placeholder="0" /><br />
       <input type="submit" value="Hæv beløb" />
+    </form>
+
+    <h3>Indsæt penge</h3>
+    <form action="TransaktionServlet" method="post">
+      <label for="indsaetbeloeb">Angiv beløb: </label>
+      <input type="number" id="indsaetbeloeb" name="indsaetbeloeb" placeholder="0" /><br />
+      <input type="submit" value="Indsæt beløb" />
     </form>
 
   </body>
