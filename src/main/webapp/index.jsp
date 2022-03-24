@@ -21,6 +21,17 @@
             <label for="pass">Indtast password: </label>
             <input type="password" id="pass" name="pass" placeholder="******" /><br />
             <input type="submit" value="Login" />
+        </form><br /><br />
+
+        <h1>Opret ny konto</h1>
+        <form action="LoginServlet" method="post">
+            <label for="newname">Skriv nyt navn: </label>
+            <input type="text" id="newname" name="newname" /><br />
+            <label for="newpass">Skriv ny kode: </label>
+            <input type="password" id="newpass" name="newpass" /><br />
+            <label for="passconfirm">Skriv koden igen: </label>
+            <input type="password" id="passconfirm" name="passconfirm" /><br />
+            <input type="submit" value="Opret konto" />
         </form>
     </body>
 </html>

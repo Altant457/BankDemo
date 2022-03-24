@@ -34,6 +34,15 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String newname = request.getParameter("newname");
+        String pass = request.getParameter("newpass");
+        String passconf = request.getParameter("passconfirm");
 
+        Map<String, Account> accountMap = (Map<String, Account>) getServletContext().getAttribute("accounts");
+
+        if (accountMap.containsKey(newname)) {
+            request.setAttribute("msg", "Navnet \"" + newname + "\" er allerede i brug, vælg et andet");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 }
