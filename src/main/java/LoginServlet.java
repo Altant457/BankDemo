@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
         if (account == null) {
             request.setAttribute("msg", "Kontoen kunne ikke findes.");
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        }else if (!account.getPass().equals(pass)) {
+        } else if (!account.getPass().equals(pass)) {
             request.setAttribute("msg", "Den angivne kode passer ikke.");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }

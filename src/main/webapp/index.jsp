@@ -10,7 +10,7 @@
         <a href="hello-servlet">Hent konto liste</a>
         <h1>Liste af konti</h1>
         <c:forEach items="${applicationScope.accounts}" var="account">
-            ${account.value.name} : ${account.value.saldo} kr. <br />
+            ${account.value.name} : ${account.value.saldo} kr.<br />
         </c:forEach>
 
         <h1>${requestScope.msg}</h1>
