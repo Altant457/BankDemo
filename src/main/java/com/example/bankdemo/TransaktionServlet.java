@@ -12,11 +12,23 @@ public class TransaktionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String beloeb = request.getParameter("beloeb");
+        String errmsg ="";
 
         Account account = (Account) request.getSession().getAttribute("konto");
 
-        int i = Integer.parseInt(beloeb);
+        int i = 0;
+        if (!beloeb.equals("")) { // hvis input IKKE er tomt
+            i = Integer.parseInt(beloeb);
+        }
+
+        if (i > account.getSaldo()) {
+            errmsg = "Så mange penge har du ikke";
+        } else if (i < 0) {
+            errmsg = "Du kan ikke hæve et negativt beløb";
+        }
+        request.setAttribute("errmsg", errmsg);
         account.withdraw(i);
+
 
         request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
     }

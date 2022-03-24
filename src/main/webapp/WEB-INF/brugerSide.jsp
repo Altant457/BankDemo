@@ -7,6 +7,8 @@
     <h1>Velkommen, du er nu logget ind på din konto ${sessionScope.konto.name}</h1>
     <h2>Din saldo er ${sessionScope.konto.saldo}</h2>
 
+    <h1>${requestScope.errmsg}</h1>
+
     <h3>Hæv penge</h3>
     <form action="TransaktionServlet">
       <label for="beloeb">Angiv beløb: </label>
