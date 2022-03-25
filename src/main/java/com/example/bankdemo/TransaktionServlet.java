@@ -17,7 +17,7 @@ public class TransaktionServlet extends HttpServlet {
         Account account = (Account) request.getSession().getAttribute("konto");
 
         if (account == null) {
-            request.setAttribute("msg", "Gå til index for at logge ind igen");
+            request.setAttribute("msg", "Du er logget ud, log venligst ind igen");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
