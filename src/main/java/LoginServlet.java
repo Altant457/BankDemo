@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
             err = true;
         }
 
-        if (!pass.equals(passconf)) { // passwords don't match
+        if (!pass.equals(passconf) || err) { // passwords don't match
             request.setAttribute("msg", "Passwords skal være det samme i begge bokse");
             request.getRequestDispatcher("index.jsp").forward(request, response);
             err = true;

@@ -27,12 +27,12 @@ public class PassChangeServlet extends HttpServlet {
             request.getRequestDispatcher("index.jsp").forward(request, response);
             err = true;
         }
-        if (!currPass.equals(account.getPass())) {
+        if (!currPass.equals(account.getPass()) || err) {
             request.setAttribute("errmsg", "Password er forkert");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
             err = true;
         }
-        if (!newPass.equals(newPassConf)) {
+        if (!newPass.equals(newPassConf) || err) {
             request.setAttribute("errmsg", "Ny password er ikke ens i begge felter");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
             err = true;

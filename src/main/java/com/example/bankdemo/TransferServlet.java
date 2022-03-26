@@ -30,27 +30,27 @@ public class TransferServlet extends HttpServlet {
             request.getRequestDispatcher("index.jsp").forward(request, response);
             err = true;
         }
-        if (toaccount == null) {
+        if (toaccount == null || err) {
             request.setAttribute("errmsg", "Den konto findes ikke");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
             err = true;
         }
-        if (account == toaccount) {
+        if (account == toaccount || err) {
             request.setAttribute("errmsg", "Du kan ikke overføre penge til dig selv");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
             err = true;
         }
-        if (!passconf.equals(account.getPass())) {
+        if (!passconf.equals(account.getPass()) || err) {
             request.setAttribute("errmsg", "Password er forkert, overførslen kunne ikke bekræftes");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
             err = true;
         }
-        if (transferAmt < 0) {
+        if (transferAmt < 0 || err) {
             request.setAttribute("errmsg", "Du kan ikke overføre et negativt beløb");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
             err = true;
         }
-        if (transferAmt > account.getSaldo()) {
+        if ((transferAmt > account.getSaldo()) || err) {
             request.setAttribute("errmsg", "Så mange penge har du ikke på din saldo");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
             err = true;
