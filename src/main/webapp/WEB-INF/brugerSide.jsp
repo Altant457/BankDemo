@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
@@ -45,5 +46,11 @@
 
     <h4>${requestScope.status}</h4>
 
+    <div>
+      <h3>Liste af transaktioner</h3>
+      <c:forEach items="${sessionScope.konto.transactions}" var="transaction">
+        ${transaction}<br />
+      </c:forEach>
+    </div>
   </body>
 </html>

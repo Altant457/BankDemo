@@ -30,8 +30,10 @@ public class TransaktionServlet extends HttpServlet {
             errmsg = "Så mange penge har du ikke";
         } else if (i < 0) {
             errmsg = "Du kan ikke hæve et negativt beløb";
+        } else {
+            account.withdraw(i);
+            request.setAttribute("status", i + " kr. hævet");
         }
-        account.withdraw(i);
 
 
         request.setAttribute("errmsg", errmsg);
@@ -57,11 +59,12 @@ public class TransaktionServlet extends HttpServlet {
 
         if (i < 0) {
             errmsg = "Du kan ikke indsætte et negativt beløb";
+        } else {
+            account.insert(i);
+            request.setAttribute("status", i + " kr. indsat");
         }
 
-        account.insert(i);
         request.setAttribute("errmsg", errmsg);
-
         request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
     }
 }

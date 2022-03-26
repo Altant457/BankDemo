@@ -13,6 +13,7 @@ class AccountTest {
         assertEquals("John", account.getName());
         assertEquals("1234", account.getPass());
         assertEquals(100, account.getSaldo());
+        assertEquals("[]", account.getTransactions().toString());
     }
 
     @Test
@@ -42,7 +43,7 @@ class AccountTest {
 
     @Test
     void transfer() {
-        account.transfer(100, toacc);
+        account.transfer(100, toacc, true);
         assertEquals(0, account.getSaldo());
         assertEquals(200, toacc.getSaldo());
     }

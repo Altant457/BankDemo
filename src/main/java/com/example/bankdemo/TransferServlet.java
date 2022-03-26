@@ -50,7 +50,7 @@ public class TransferServlet extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
         }
 
-        account.transfer(transferAmt, toaccount);
+        account.transfer(transferAmt, toaccount, true);
 
         request.setAttribute("status", "Overførsel på " + transferAmt + " kr. til \"" +
                                        toaccount.getName() + "\" fuldført");

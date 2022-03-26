@@ -29,6 +29,9 @@ public class Account {
         return saldo;
     }
 
+    public List<String> getTransactions() {
+        return transactions;
+    }
 //endregion
 
     public int insert(int amt) {
@@ -36,6 +39,7 @@ public class Account {
             return saldo;
         }
         saldo += amt;
+        transactions.add(amt + " kr. indsat");
         return saldo;
     }
 
@@ -44,12 +48,18 @@ public class Account {
             return saldo;
         }
         saldo -= amt;
+        transactions.add(amt + " kr. hævet");
         return saldo;
     }
 
-    public void transfer(int amt, Account toacc) {
-        this.withdraw(amt);
-        toacc.insert(amt);
-        transactions.add("Overførsel på " + amt + " kr. til \"" + toacc.getName() + "\"");
+    public void transfer(int amt, Account otherAccount, boolean isSender) { // this is cursed
+        if (isSender) { // the sender executes this part
+            saldo -= amt;
+            otherAccount.transfer(amt, this, false);
+            transactions.add("Overførsel på " + amt + " kr. til \"" + otherAccount.getName() + "\"");
+        } else { // the recipient executes this part
+            saldo += amt;
+            transactions.add("Overførsel på " + amt + " kr. fra \"" + otherAccount.getName() + "\"");
+        }
     }
 }
