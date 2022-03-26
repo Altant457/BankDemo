@@ -61,7 +61,7 @@
         <label for="transferbeloeb">Angiv beløb: </label>
         <input type="number" id="transferbeloeb" name="transferbeloeb" placeholder="0" required /><br />
         <label for="passconf">Bekæft kodeord: </label>
-        <input type="password" id="passconf" name="passconf" placeholder="password" required /><br />
+        <input type="password" id="passconf" name="passconf" placeholder="********" required /><br />
         <input type="submit" value="Bekræft" />
       </form>
     </div>
