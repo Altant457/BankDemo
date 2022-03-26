@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
     Account account = new Account("John", "1234", 100);
+    Account toacc = new Account("Jane", "5678", 100);
 
     @Test
     void getters() {
@@ -37,5 +38,12 @@ class AccountTest {
     @Test
     void withdrawNegative() {
         assertEquals(100, account.withdraw(-100));
+    }
+
+    @Test
+    void transfer() {
+        account.transfer(100, toacc);
+        assertEquals(0, account.getSaldo());
+        assertEquals(200, toacc.getSaldo());
     }
 }
