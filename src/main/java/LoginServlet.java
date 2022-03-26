@@ -52,6 +52,7 @@ public class LoginServlet extends HttpServlet {
 
         Account account = new Account(newname, pass, 0);
         accountMap.put(newname, account);
+        request.setAttribute("msg", "Konto \"" + newname + "\" oprettet, du kan nu logge ind");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }
