@@ -12,33 +12,48 @@
 
     <h1>${requestScope.errmsg}</h1>
 
-    <div style="position: absolute;top: 0; right: 0;">
+    <!-- Slet konto -->
+    <div style="position: absolute; top: 25px; right: 30px;">
+      <h3>Slet konto</h3>
       <form action="LogOutServlet" method="post">
         <label for="confirmDelete">Bekræft kodeord: </label>
         <input type="password" id="confirmDelete" name="confirmDelete" placeholder="********" required /><br />
-        <input type="submit" value="Slet konto" />
+        <input type="submit" value="Bekræft" />
       </form>
     </div>
-
+    <!-- Ændr password -->
+    <div style="position: absolute; top: 150px; right: 30px;">
+      <h3>Ændr password</h3>
+      <form action="PassChangeServlet" method="post">
+        <label for="currPass">Nuværende kode: </label>
+        <input type="password" id="currPass" name="currPass" placeholder="********" required /><br />
+        <label for="newPass">Ny kode: </label>
+        <input type="password" id="newPass" name="newPass" placeholder="********" required /><br />
+        <label for="newPassConf"> Bekræft ny kode: </label>
+        <input type="password" id="newPassConf" name="newPassConf" placeholder="********" required /><br />
+        <input type="submit" value="Bekræft" />
+      </form>
+    </div>
+    <!-- Hæv penge -->
     <div style="float: left; width: 20%;">
       <h3>Hæv penge</h3>
       <form action="TransaktionServlet">
         <label for="haevebeloeb">Angiv beløb: </label>
         <input type="number" id="haevebeloeb" name="haevebeloeb" placeholder="0" required /><br/>
-        <input type="submit" value="Hæv beløb"/>
+        <input type="submit" value="Bekræft"/>
       </form>
     </div>
-
-    <div style="float: left; width: 25%">
+    <!-- Indsæt penge -->
+    <div style="float: left; width: 25%;">
       <h3>Indsæt penge</h3>
       <form action="TransaktionServlet" method="post">
         <label for="indsaetbeloeb">Angiv beløb: </label>
         <input type="number" id="indsaetbeloeb" name="indsaetbeloeb" placeholder="0" required /><br />
-        <input type="submit" value="Indsæt beløb" />
+        <input type="submit" value="Bekræft" />
       </form>
     </div>
-
-    <div style="float: left; width: 35%">
+    <!-- Overfør penge -->
+    <div style="float: left; width: 55%;">
       <h3>Overfør penge</h3>
       <form action="TransferServlet" method="post">
         <label for="tokonto">Angiv modtager: </label>
@@ -47,7 +62,7 @@
         <input type="number" id="transferbeloeb" name="transferbeloeb" placeholder="0" required /><br />
         <label for="passconf">Bekæft kodeord: </label>
         <input type="password" id="passconf" name="passconf" placeholder="password" required /><br />
-        <input type="submit" value="Overfør penge" />
+        <input type="submit" value="Bekræft" />
       </form>
     </div>
 

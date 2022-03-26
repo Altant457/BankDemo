@@ -9,7 +9,7 @@ public class Account {
     private int saldo;
     private List<String> transactions;
 
-//region Constructor & Getters
+//region Constructor, Getters & Setters
     public Account(String name, String pass, int saldo) {
         this.name = name;
         this.pass = pass;
@@ -23,6 +23,10 @@ public class Account {
 
     public String getPass() {
         return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public int getSaldo() {
