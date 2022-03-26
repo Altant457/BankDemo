@@ -56,10 +56,10 @@ public class Account {
         if (isSender) { // the sender executes this part
             saldo -= amt;
             otherAccount.transfer(amt, this, false);
-            transactions.add("Overførsel på " + amt + " kr. til \"" + otherAccount.getName() + "\"");
+            transactions.add(0, "Overførsel på " + amt + " kr. til \"" + otherAccount.getName() + "\"");
         } else { // the recipient executes this part
             saldo += amt;
-            transactions.add("Overførsel på " + amt + " kr. fra \"" + otherAccount.getName() + "\"");
+            transactions.add(0, "Overførsel på " + amt + " kr. fra \"" + otherAccount.getName() + "\"");
         }
     }
 }
