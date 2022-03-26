@@ -13,12 +13,13 @@ public class TransaktionServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String beloeb = request.getParameter("haevebeloeb");
         String errmsg ="";
-
+        boolean err = false;
         Account account = (Account) request.getSession().getAttribute("konto");
 
         if (account == null) {
             request.setAttribute("msg", "Du er logget ud, log venligst ind igen");
             request.getRequestDispatcher("index.jsp").forward(request, response);
+            err = true;
         }
 
         int i = 0;
@@ -28,9 +29,11 @@ public class TransaktionServlet extends HttpServlet {
 
         if (i > account.getSaldo()) {
             errmsg = "Så mange penge har du ikke";
+            err = true;
         } else if (i < 0) {
             errmsg = "Du kan ikke hæve et negativt beløb";
-        } else {
+            err = true;
+        } else if (!err) {
             account.withdraw(i);
             request.setAttribute("status", i + " kr. hævet");
         }
@@ -44,22 +47,25 @@ public class TransaktionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String beloeb = request.getParameter("indsaetbeloeb");
         String errmsg ="";
-
+        boolean err = false;
         Account account = (Account) request.getSession().getAttribute("konto");
 
         if (account == null) {
             request.setAttribute("msg", "Du er logget ud, log venligst ind igen");
             request.getRequestDispatcher("index.jsp").forward(request, response);
+            err = true;
         }
 
         int i = 0;
         if (!beloeb.equals("")) { // hvis input IKKE er tomt
             i = Integer.parseInt(beloeb);
         }
-
         if (i < 0) {
             errmsg = "Du kan ikke indsætte et negativt beløb";
-        } else {
+            err = true;
+        }
+
+        if (!err) {
             account.insert(i);
             request.setAttribute("status", i + " kr. indsat");
         }

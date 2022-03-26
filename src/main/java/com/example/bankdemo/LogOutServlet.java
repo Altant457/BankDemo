@@ -21,15 +21,19 @@ public class LogOutServlet extends HttpServlet {
         String passconf = request.getParameter("confirmDelete");
         Map<String, Account> accountMap = (Map<String, Account>) getServletContext().getAttribute("accounts");
         Account account = (Account) request.getSession().getAttribute("konto");
+        boolean err = false;
 
         if (!passconf.equals(account.getPass())) {
             request.setAttribute("errmsg", "Password er forkert, sletning af konto kunne ikke bekræftes");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
+            err = true;
         }
 
-        accountMap.remove(account.getName());
-        request.getSession().invalidate();
-        request.setAttribute("msg", "Konto \"" + account.getName() + "\" blev slettet");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        if (!err) {
+            accountMap.remove(account.getName());
+            request.getSession().invalidate();
+            request.setAttribute("msg", "Konto \"" + account.getName() + "\" blev slettet");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 }

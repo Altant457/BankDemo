@@ -19,24 +19,29 @@ public class PassChangeServlet extends HttpServlet {
         String currPass = request.getParameter("currPass");
         String newPass = request.getParameter("newPass");
         String newPassConf = request.getParameter("newPassConf");
-
+        boolean err = false;
         Account account = (Account) request.getSession().getAttribute("konto");
 
         if (account == null) {
             request.setAttribute("msg", "Du er logget ud, log venligst ind igen");
             request.getRequestDispatcher("index.jsp").forward(request, response);
+            err = true;
         }
         if (!currPass.equals(account.getPass())) {
             request.setAttribute("errmsg", "Password er forkert");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
+            err = true;
         }
         if (!newPass.equals(newPassConf)) {
             request.setAttribute("errmsg", "Ny password er ikke ens i begge felter");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
+            err = true;
         }
 
-        account.setPass(newPass);
-        request.setAttribute("errmsg", "Password ændret");
-        request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
+        if (!err) {
+            account.setPass(newPass);
+            request.setAttribute("errmsg", "Password ændret");
+            request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
+        }
     }
 }
