@@ -12,26 +12,33 @@
 
     <h1>${requestScope.errmsg}</h1>
 
+    <div style="position: absolute;top: 0; right: 0;">
+      <form action="LogOutServlet" method="post">
+        <label for="confirmDelete">Bekræft kodeord: </label>
+        <input type="password" id="confirmDelete" name="confirmDelete" placeholder="********" required /><br />
+        <input type="submit" value="Slet konto" />
+      </form>
+    </div>
 
-    <left style="float: left; width: 20%;">
+    <div style="float: left; width: 20%;">
       <h3>Hæv penge</h3>
       <form action="TransaktionServlet">
         <label for="haevebeloeb">Angiv beløb: </label>
         <input type="number" id="haevebeloeb" name="haevebeloeb" placeholder="0" required /><br/>
         <input type="submit" value="Hæv beløb"/>
       </form>
-    </left>
+    </div>
 
-    <middle style="float: left; width: 25%">
+    <div style="float: left; width: 25%">
       <h3>Indsæt penge</h3>
       <form action="TransaktionServlet" method="post">
         <label for="indsaetbeloeb">Angiv beløb: </label>
         <input type="number" id="indsaetbeloeb" name="indsaetbeloeb" placeholder="0" required /><br />
         <input type="submit" value="Indsæt beløb" />
       </form>
-    </middle>
+    </div>
 
-    <right style="float: left; width: 35%">
+    <div style="float: left; width: 35%">
       <h3>Overfør penge</h3>
       <form action="TransferServlet" method="post">
         <label for="tokonto">Angiv modtager: </label>
@@ -42,7 +49,7 @@
         <input type="password" id="passconf" name="passconf" placeholder="password" required /><br />
         <input type="submit" value="Overfør penge" />
       </form>
-    </right>
+    </div>
 
     <h4>${requestScope.status}</h4>
 
