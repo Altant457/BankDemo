@@ -47,4 +47,11 @@ class AccountTest {
         assertEquals(0, account.getSaldo());
         assertEquals(200, toacc.getSaldo());
     }
+
+    @Test
+    void changePass() {
+        assertEquals("1234", account.getPass());
+        account.setPass("4321");
+        assertEquals("4321", account.getPass());
+    }
 }
