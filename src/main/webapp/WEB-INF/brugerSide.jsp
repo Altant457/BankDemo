@@ -5,7 +5,9 @@
     <title>Din side</title>
   </head>
   <body>
-    <h1>Velkommen, du er nu logget ind på din konto ${sessionScope.konto.name}</h1>
+    <h1>
+      Velkommen ${sessionScope.username}, du er nu logget ind på kontoen ${sessionScope.konto.name}
+    </h1>
     <h2>Din saldo: ${sessionScope.konto.saldo} kr.</h2>
 
     <a href="LogOutServlet">Log af</a>

@@ -5,15 +5,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
-    Account account = new Account("John", "1234", 100);
-    Account toacc = new Account("Jane", "5678", 100);
+    Account account = new Account(new User("John", "1234"), 100);
+    Account toacc = new Account(new User("Jane", "5678"), 100);
 
     @Test
     void getters() {
-        assertEquals("John", account.getName());
-        assertEquals("1234", account.getPass());
+        assertEquals("John", account.getMasterName());
+        assertEquals("1234", account.getMasterPass());
         assertEquals(100, account.getSaldo());
         assertEquals("[]", account.getTransactions().toString());
+        System.out.println(account.getUsers().toString());
     }
 
     @Test
@@ -50,8 +51,8 @@ class AccountTest {
 
     @Test
     void changePass() {
-        assertEquals("1234", account.getPass());
-        account.setPass("4321");
-        assertEquals("4321", account.getPass());
+        assertEquals("1234", account.getMasterPass());
+        account.setMasterPass("4321");
+        assertEquals("4321", account.getMasterPass());
     }
 }

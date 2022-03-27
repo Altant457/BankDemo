@@ -23,16 +23,16 @@ public class LogOutServlet extends HttpServlet {
         Account account = (Account) request.getSession().getAttribute("konto");
         boolean err = false;
 
-        if (!passconf.equals(account.getPass())) {
+        if (!passconf.equals(account.getMasterPass())) {
             request.setAttribute("errmsg", "Password er forkert, sletning af konto kunne ikke bekræftes");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
             err = true;
         }
 
         if (!err) {
-            accountMap.remove(account.getName());
+            accountMap.remove(account.getMasterName());
             request.getSession().invalidate();
-            request.setAttribute("msg", "Konto \"" + account.getName() + "\" blev slettet");
+            request.setAttribute("msg", "Konto \"" + account.getMasterName() + "\" blev slettet");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }

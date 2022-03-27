@@ -1,6 +1,7 @@
 package com.example.bankdemo;
 
 import DomainObjects.Account;
+import DomainObjects.User;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -21,13 +22,14 @@ public class PassChangeServlet extends HttpServlet {
         String newPassConf = request.getParameter("newPassConf");
         boolean err = false;
         Account account = (Account) request.getSession().getAttribute("konto");
+        User currUser = (User) request.getSession().getAttribute("username");
 
         if (account == null) {
             request.setAttribute("msg", "Du er logget ud, log venligst ind igen");
             request.getRequestDispatcher("index.jsp").forward(request, response);
             err = true;
         }
-        if (!currPass.equals(account.getPass()) || err) {
+        if (!currPass.equals(currUser.getPass()) || err) {
             request.setAttribute("errmsg", "Password er forkert");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
             err = true;
@@ -39,8 +41,15 @@ public class PassChangeServlet extends HttpServlet {
         }
 
         if (!err) {
-            account.setPass(newPass);
-            request.setAttribute("errmsg", "Password ændret");
+            if (account.getUsers().get(currUser) == 1) {
+                account.setMasterPass(newPass);
+                currUser.setPass(newPass);
+                request.setAttribute("errmsg", "Master password ændret");
+            } else {
+                currUser.setPass(newPass);
+                request.setAttribute("errmsg", "Password ændret");
+            }
+
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
         }
     }

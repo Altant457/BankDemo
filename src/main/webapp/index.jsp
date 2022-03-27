@@ -31,6 +31,10 @@
             <input type="password" id="newpass" name="newpass" required /><br />
             <label for="passconfirm">Skriv koden igen: </label>
             <input type="password" id="passconfirm" name="passconfirm" required /><br />
+            <label for="konto">Konto</label>
+            <input type="radio" id="konto" name="type" value="Konto" /><br />
+            <label for="user">Bruger</label>
+            <input type="radio" id="user" name="type" value="User (WIP virker ikke)" /><br />
             <input type="submit" value="Opret konto" />
         </form>
     </body>

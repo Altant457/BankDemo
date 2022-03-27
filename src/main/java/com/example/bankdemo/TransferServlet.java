@@ -1,6 +1,7 @@
 package com.example.bankdemo;
 
 import DomainObjects.Account;
+import DomainObjects.User;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -23,6 +24,7 @@ public class TransferServlet extends HttpServlet {
         boolean err = false;
         Map<String, Account> accountMap = (Map<String, Account>) getServletContext().getAttribute("accounts");
         Account account = (Account) request.getSession().getAttribute("konto");
+        User currUser = (User) request.getSession().getAttribute("username");
         Account toaccount = accountMap.getOrDefault(toaccountname, null);
 
         if (account == null) {
@@ -40,7 +42,7 @@ public class TransferServlet extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
             err = true;
         }
-        if (!passconf.equals(account.getPass()) || err) {
+        if (!passconf.equals(currUser.getPass()) || err) {
             request.setAttribute("errmsg", "Password er forkert, overførslen kunne ikke bekræftes");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
             err = true;
@@ -60,7 +62,7 @@ public class TransferServlet extends HttpServlet {
             account.transfer(transferAmt, toaccount, true);
 
             request.setAttribute("status", "Overførsel på " + transferAmt + " kr. til \"" +
-                                           toaccount.getName() + "\" fuldført");
+                                           toaccount.getMasterName() + "\" fuldført");
             request.getRequestDispatcher("WEB-INF/brugerSide.jsp").forward(request, response);
         }
     }
