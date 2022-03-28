@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1><%= "Hello World!" %></h1><br />
-        <a href="hello-servlet">Hent konto liste</a>
+        <a href="hello-servlet"></a>
         <h1>Liste af konti</h1>
         <c:forEach items="${applicationScope.accounts}" var="account">
             ${account.value.name} : ${account.value.saldo} kr.<br />
