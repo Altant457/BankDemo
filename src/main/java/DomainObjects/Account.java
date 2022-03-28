@@ -43,7 +43,7 @@ public class Account {
             return saldo;
         }
         saldo += amt;
-        transactions.add(amt + " kr. indsat");
+        transactions.add(0, amt + " kr. indsat");
         return saldo;
     }
 
@@ -52,7 +52,7 @@ public class Account {
             return saldo;
         }
         saldo -= amt;
-        transactions.add(amt + " kr. hævet");
+        transactions.add(0, amt + " kr. hævet");
         return saldo;
     }
 
